@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SLAutenticacionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NOMBRES" Type="varchar" MaxLength="200" />
+    <Property Name="APELLIDOS" Type="varchar" MaxLength="200" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="300" />
+    <Property Name="USUARIO" Type="varchar" MaxLength="100" />
+    <Property Name="CLAVE" Type="varchar" MaxLength="300" />
+    <Property Name="ESFARMACIA" Type="char" MaxLength="1" />
+    <Property Name="FECHA_CREACION" Type="date" />
+    <Property Name="FECHA_MODIFICACION" Type="date" />
+  </EntityType>
+  <EntityType Name="USUARIO_FARMACIA">
+    <Key>
+      <PropertyRef Name="ID_USUARIO_FARMACIA" />
+    </Key>
+    <Property Name="ID_USUARIO_FARMACIA" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID_USUARIO" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="RAZON_SOCIAL" Type="varchar" MaxLength="300" />
+    <Property Name="NIT" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="500" />
+    <Property Name="TELEFONO" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="FECHA_CREACION" Type="date" />
+    <Property Name="FECHA_MODIFICACION" Type="date" />
+  </EntityType>
+  <Association Name="FK_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="USUARIO_FARMACIA" Type="Self.USUARIO_FARMACIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="USUARIO_FARMACIA">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SLAutenticacionModelStoreContainer">
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO_FARMACIA" EntityType="Self.USUARIO_FARMACIA" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_USUARIO" Association="Self.FK_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="USUARIO_FARMACIA" EntitySet="USUARIO_FARMACIA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

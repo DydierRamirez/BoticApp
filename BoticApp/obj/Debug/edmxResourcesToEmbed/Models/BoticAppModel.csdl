@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SLAutenticacionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="ID_USUARIO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="NOMBRES" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="APELLIDOS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="USUARIO1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CLAVE" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="ESFARMACIA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+    <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="USUARIO_FARMACIA" Relationship="Self.FK_USUARIO" FromRole="USUARIO" ToRole="USUARIO_FARMACIA" />
+  </EntityType>
+  <EntityType Name="USUARIO_FARMACIA">
+    <Key>
+      <PropertyRef Name="ID_USUARIO_FARMACIA" />
+    </Key>
+    <Property Name="ID_USUARIO_FARMACIA" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ID_USUARIO" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="RAZON_SOCIAL" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="NIT" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DIRECCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+    <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO" FromRole="USUARIO_FARMACIA" ToRole="USUARIO" />
+  </EntityType>
+  <Association Name="FK_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="USUARIO_FARMACIA" Type="Self.USUARIO_FARMACIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Principal>
+      <Dependent Role="USUARIO_FARMACIA">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SLAutenticacionEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
+    <EntitySet Name="USUARIO_FARMACIA" EntityType="Self.USUARIO_FARMACIA" />
+    <AssociationSet Name="FK_USUARIO" Association="Self.FK_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIOs" />
+      <End Role="USUARIO_FARMACIA" EntitySet="USUARIO_FARMACIA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
