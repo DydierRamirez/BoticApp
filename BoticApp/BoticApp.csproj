@@ -52,6 +52,9 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -107,9 +110,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -128,44 +128,61 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FARMACIAController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\MEDICAMENTOController.cs" />
+    <Compile Include="Controllers\USUARIOController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Ingresar.aspx.cs">
-      <DependentUpon>Ingresar.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Logica\Medicamento.cs" />
+    <Compile Include="Models\BODEGA.cs">
+      <DependentUpon>BoticApp.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ingresar.aspx.designer.cs">
-      <DependentUpon>Ingresar.aspx</DependentUpon>
+    <Compile Include="Models\BoticApp.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoticApp.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Models\BoticApp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoticApp.tt</DependentUpon>
     </Compile>
-    <Compile Include="Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
+    <Compile Include="Models\BoticApp.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BoticApp.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FARMACIA.cs">
+      <DependentUpon>BoticApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MEDICAMENTO.cs">
+      <DependentUpon>BoticApp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MEDICAMENTO_TIPO.cs">
+      <DependentUpon>BoticApp.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USUARIO.cs">
-      <DependentUpon>UsuarioModel.tt</DependentUpon>
+      <DependentUpon>BoticApp.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UsuarioModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UsuarioModel.Context.tt</DependentUpon>
+    <Compile Include="Restaurar.aspx.cs">
+      <DependentUpon>Restaurar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Models\UsuarioModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UsuarioModel.tt</DependentUpon>
+    <Compile Include="Restaurar.aspx.designer.cs">
+      <DependentUpon>Restaurar.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\UsuarioModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UsuarioModel.edmx</DependentUpon>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -177,19 +194,46 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Ingresar.aspx" />
-    <Content Include="Inicio.aspx" />
+    <Content Include="Models\BoticApp.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BoticApp.edmx</DependentUpon>
+      <LastGenOutput>BoticApp.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BoticApp.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BoticApp.edmx</DependentUpon>
+      <LastGenOutput>BoticApp.cs</LastGenOutput>
+    </Content>
+    <Content Include="Recursos\flexdatalist\jquery.flexdatalist.css" />
+    <Content Include="Recursos\flexdatalist\jquery.flexdatalist.js" />
+    <Content Include="Recursos\flexdatalist\jquery.flexdatalist.min.css" />
+    <Content Include="Recursos\flexdatalist\jquery.flexdatalist.min.js" />
+    <Content Include="Recursos\json_serializer\Newtonsoft.Json.dll" />
+    <Content Include="Restaurar.aspx" />
+    <Content Include="default.aspx" />
     <Content Include="medicamento.html" />
-    <Content Include="Models\UsuarioModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UsuarioModel.edmx</DependentUpon>
-      <LastGenOutput>UsuarioModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\UsuarioModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UsuarioModel.edmx</DependentUpon>
-      <LastGenOutput>UsuarioModel.cs</LastGenOutput>
-    </Content>
+    <Content Include="Recursos\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Recursos\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Recursos\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Recursos\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Recursos\bootstrap\css\bootstrap.css" />
+    <Content Include="Recursos\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Recursos\bootstrap\css\signin.css" />
+    <Content Include="Recursos\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Recursos\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Recursos\bootstrap\js\bootstrap.js" />
+    <Content Include="Recursos\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Recursos\bootstrap\js\docs.min.js" />
+    <Content Include="Recursos\bootstrap\js\holder.min.js" />
+    <Content Include="Recursos\bootstrap\js\popper.min.js" />
+    <Content Include="Recursos\bootstrap\js\src\application.js" />
+    <Content Include="Recursos\bootstrap\js\src\ie-emulation-modes-warning.js" />
+    <Content Include="Recursos\bootstrap\js\src\pwa.js" />
+    <Content Include="Recursos\bootstrap\js\vendor\anchor.min.js" />
+    <Content Include="Recursos\bootstrap\js\vendor\clipboard.min.js" />
+    <Content Include="Recursos\bootstrap\js\vendor\holder.min.js" />
+    <Content Include="Recursos\bootstrap\js\vendor\jquery-slim.min.js" />
+    <Content Include="Recursos\bootstrap\js\vendor\popper.min.js" />
     <Content Include="Recursos\css\sb-admin-2.css" />
     <Content Include="Recursos\css\sb-admin-2.min.css" />
     <Content Include="Recursos\img\adult-aged-aging-1389104.jpg" />
@@ -1925,13 +1969,29 @@
     <Content Include="Recursos\vendor\fontawesome-free\webfonts\fa-solid-900.woff2" />
     <Content Include="Recursos\vendor\jquery\jquery.min.map" />
     <Content Include="Recursos\vendor\jquery\jquery.slim.min.map" />
-    <EntityDeploy Include="Models\UsuarioModel.edmx">
+    <Content Include="Recursos\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Recursos\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Recursos\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Recursos\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Recursos\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Recursos\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Recursos\bootstrap\js\.eslintrc.json" />
+    <Content Include="Recursos\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Recursos\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Recursos\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Recursos\bootstrap\js\bootstrap.min.js.map" />
+    <EntityDeploy Include="Models\BoticApp.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UsuarioModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>BoticApp.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\UsuarioModel.edmx.diagram">
-      <DependentUpon>UsuarioModel.edmx</DependentUpon>
+    <Content Include="Models\BoticApp.edmx.diagram">
+      <DependentUpon>BoticApp.edmx</DependentUpon>
     </Content>
+    <Content Include="Recursos\flexdatalist\bower.json" />
+    <Content Include="Recursos\flexdatalist\LICENSE" />
+    <Content Include="Recursos\flexdatalist\package.json" />
+    <Content Include="Recursos\flexdatalist\README.md" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -1954,15 +2014,25 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Usuario\Create.cshtml" />
-    <Content Include="Views\Usuario\Delete.cshtml" />
-    <Content Include="Views\Usuario\Details.cshtml" />
-    <Content Include="Views\Usuario\Edit.cshtml" />
-    <Content Include="Views\Usuario\Index.cshtml" />
-    <Content Include="Views\Ingresar.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\USUARIO\Create.cshtml" />
+    <Content Include="Views\USUARIO\Delete.cshtml" />
+    <Content Include="Views\USUARIO\Details.cshtml" />
+    <Content Include="Views\USUARIO\Edit.cshtml" />
+    <Content Include="Views\USUARIO\Index.cshtml" />
+    <Content Include="Views\FARMACIA\Create.cshtml" />
+    <Content Include="Views\FARMACIA\Delete.cshtml" />
+    <Content Include="Views\FARMACIA\Details.cshtml" />
+    <Content Include="Views\FARMACIA\Edit.cshtml" />
+    <Content Include="Views\FARMACIA\Index.cshtml" />
+    <Content Include="Views\MEDICAMENTO\Create.cshtml" />
+    <Content Include="Views\MEDICAMENTO\Delete.cshtml" />
+    <Content Include="Views\MEDICAMENTO\Details.cshtml" />
+    <Content Include="Views\MEDICAMENTO\Edit.cshtml" />
+    <Content Include="Views\MEDICAMENTO\Index.cshtml" />
+    <Content Include="Views\MEDICAMENTO\Find.cshtml" />
+    <Content Include="Views\MEDICAMENTO\Farmacias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

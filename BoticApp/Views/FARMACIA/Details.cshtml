@@ -1,0 +1,90 @@
+﻿@model BoticApp.Models.FARMACIA
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>FARMACIA</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RAZON_SOCIAL)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RAZON_SOCIAL)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NIT)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NIT)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DIRECCION)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DIRECCION)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TELEFONO)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TELEFONO)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.USUARIO)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.USUARIO)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CLAVE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CLAVE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_CREACION)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_CREACION)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FECHA_MODIFICACION)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FECHA_MODIFICACION)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_FARMACIA }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

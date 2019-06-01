@@ -1,0 +1,21 @@
+﻿@if (ViewBag.Farmacias != null)
+{
+    foreach (var item in ViewBag.Farmacias)
+    {
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Farmacia</label>
+                    <input class="form-control" type="text" placeholder="">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <input class="form-control" type="text" placeholder="">
+                </div>
+            </div>
+        </div>
+    }
+}
+

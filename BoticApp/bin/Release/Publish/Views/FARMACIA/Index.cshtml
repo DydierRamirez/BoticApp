@@ -1,0 +1,83 @@
+﻿@model IEnumerable<BoticApp.Models.FARMACIA>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RAZON_SOCIAL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NIT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DIRECCION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TELEFONO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.USUARIO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CLAVE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FECHA_CREACION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FECHA_MODIFICACION)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RAZON_SOCIAL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NIT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DIRECCION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TELEFONO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.USUARIO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CLAVE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHA_CREACION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHA_MODIFICACION)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID_FARMACIA }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID_FARMACIA }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID_FARMACIA })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

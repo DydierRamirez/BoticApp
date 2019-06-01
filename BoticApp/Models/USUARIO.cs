@@ -20,11 +20,6 @@ namespace BoticApp.Models
         public string EMAIL { get; set; }
         public string USUARIO1 { get; set; }
         public string CLAVE { get; set; }
-        public string ESFARMACIA { get; set; }
-        public string RAZON_SOCIAL { get; set; }
-        public Nullable<decimal> NIT { get; set; }
-        public string DIRECCION { get; set; }
-        public Nullable<decimal> TELEFONO { get; set; }
         public Nullable<System.DateTime> FECHA_CREACION { get; set; }
         public Nullable<System.DateTime> FECHA_MODIFICACION { get; set; }
     }
