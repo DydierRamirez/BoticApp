@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BoticApp.Models.MEDICAMENTO>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CODIGO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MEDICAMENTO1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DESCRIPCION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MEDICAMENTO_TIPO.MEDICAMENTO_TIPO1)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CODIGO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MEDICAMENTO1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DESCRIPCION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MEDICAMENTO_TIPO.MEDICAMENTO_TIPO1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID_MEDICAMENTO }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID_MEDICAMENTO }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID_MEDICAMENTO })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BoticApp.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BODEGA">
+          <Key>
+            <PropertyRef Name="ID_BODEGA" />
+          </Key>
+          <Property Name="ID_BODEGA" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_FARMACIA" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ID_MEDICAMENTO" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CANTIDAD" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="VALOR_UNITARIO" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="FARMACIA">
+          <Key>
+            <PropertyRef Name="ID_FARMACIA" />
+          </Key>
+          <Property Name="ID_FARMACIA" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RAZON_SOCIAL" Type="varchar" MaxLength="300" />
+          <Property Name="NIT" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="500" />
+          <Property Name="TELEFONO" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CLAVE" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+        </EntityType>
+        <EntityType Name="MEDICAMENTO">
+          <Key>
+            <PropertyRef Name="ID_MEDICAMENTO" />
+          </Key>
+          <Property Name="ID_MEDICAMENTO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_MEDICAMENTO_TIPO" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CODIGO" Type="varchar" MaxLength="100" />
+          <Property Name="MEDICAMENTO" Type="varchar" MaxLength="100" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MEDICAMENTO_TIPO">
+          <Key>
+            <PropertyRef Name="ID_MEDICAMENTO_TIPO" />
+          </Key>
+          <Property Name="ID_MEDICAMENTO_TIPO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MEDICAMENTO_TIPO" Type="varchar" MaxLength="100" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="200" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="200" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="300" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="100" />
+          <Property Name="CLAVE" Type="varchar" MaxLength="300" />
+          <Property Name="FECHA_CREACION" Type="date" />
+          <Property Name="FECHA_MODIFICACION" Type="date" />
+        </EntityType>
+        <Association Name="FK_FARMACIA">
+          <End Role="FARMACIA" Type="Self.FARMACIA" Multiplicity="0..1" />
+          <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FARMACIA">
+              <PropertyRef Name="ID_FARMACIA" />
+            </Principal>
+            <Dependent Role="BODEGA">
+              <PropertyRef Name="ID_FARMACIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICAMENTO">
+          <End Role="MEDICAMENTO" Type="Self.MEDICAMENTO" Multiplicity="0..1" />
+          <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICAMENTO">
+              <PropertyRef Name="ID_MEDICAMENTO" />
+            </Principal>
+            <Dependent Role="BODEGA">
+              <PropertyRef Name="ID_MEDICAMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICAMENTO_TIPO">
+          <End Role="MEDICAMENTO_TIPO" Type="Self.MEDICAMENTO_TIPO" Multiplicity="0..1" />
+          <End Role="MEDICAMENTO" Type="Self.MEDICAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICAMENTO_TIPO">
+              <PropertyRef Name="ID_MEDICAMENTO_TIPO" />
+            </Principal>
+            <Dependent Role="MEDICAMENTO">
+              <PropertyRef Name="ID_MEDICAMENTO_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BoticAppStoreContainer">
+          <EntitySet Name="BODEGA" EntityType="Self.BODEGA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FARMACIA" EntityType="Self.FARMACIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEDICAMENTO" EntityType="Self.MEDICAMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEDICAMENTO_TIPO" EntityType="Self.MEDICAMENTO_TIPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FARMACIA" Association="Self.FK_FARMACIA">
+            <End Role="FARMACIA" EntitySet="FARMACIA" />
+            <End Role="BODEGA" EntitySet="BODEGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICAMENTO" Association="Self.FK_MEDICAMENTO">
+            <End Role="MEDICAMENTO" EntitySet="MEDICAMENTO" />
+            <End Role="BODEGA" EntitySet="BODEGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICAMENTO_TIPO" Association="Self.FK_MEDICAMENTO_TIPO">
+            <End Role="MEDICAMENTO_TIPO" EntitySet="MEDICAMENTO_TIPO" />
+            <End Role="MEDICAMENTO" EntitySet="MEDICAMENTO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BoticApp" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BODEGA">
+          <Key>
+            <PropertyRef Name="ID_BODEGA" />
+          </Key>
+          <Property Name="ID_BODEGA" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_FARMACIA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ID_MEDICAMENTO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CANTIDAD" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="VALOR_UNITARIO" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="FARMACIA" Relationship="Self.FK_FARMACIA" FromRole="BODEGA" ToRole="FARMACIA" />
+          <NavigationProperty Name="MEDICAMENTO" Relationship="Self.FK_MEDICAMENTO" FromRole="BODEGA" ToRole="MEDICAMENTO" />
+        </EntityType>
+        <EntityType Name="FARMACIA">
+          <Key>
+            <PropertyRef Name="ID_FARMACIA" />
+          </Key>
+          <Property Name="ID_FARMACIA" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="RAZON_SOCIAL" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="NIT" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DIRECCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="USUARIO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLAVE" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="BODEGA" Relationship="Self.FK_FARMACIA" FromRole="FARMACIA" ToRole="BODEGA" />
+        </EntityType>
+        <EntityType Name="MEDICAMENTO">
+          <Key>
+            <PropertyRef Name="ID_MEDICAMENTO" />
+          </Key>
+          <Property Name="ID_MEDICAMENTO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_MEDICAMENTO_TIPO" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CODIGO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MEDICAMENTO1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BODEGA" Relationship="Self.FK_MEDICAMENTO" FromRole="MEDICAMENTO" ToRole="BODEGA" />
+          <NavigationProperty Name="MEDICAMENTO_TIPO" Relationship="Self.FK_MEDICAMENTO_TIPO" FromRole="MEDICAMENTO" ToRole="MEDICAMENTO_TIPO" />
+        </EntityType>
+        <EntityType Name="MEDICAMENTO_TIPO">
+          <Key>
+            <PropertyRef Name="ID_MEDICAMENTO_TIPO" />
+          </Key>
+          <Property Name="ID_MEDICAMENTO_TIPO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MEDICAMENTO_TIPO1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MEDICAMENTO" Relationship="Self.FK_MEDICAMENTO_TIPO" FromRole="MEDICAMENTO_TIPO" ToRole="MEDICAMENTO" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="ID_USUARIO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="NOMBRES" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CLAVE" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_CREACION" Type="DateTime" Precision="0" />
+          <Property Name="FECHA_MODIFICACION" Type="DateTime" Precision="0" />
+        </EntityType>
+        <Association Name="FK_FARMACIA">
+          <End Role="FARMACIA" Type="Self.FARMACIA" Multiplicity="0..1" />
+          <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FARMACIA">
+              <PropertyRef Name="ID_FARMACIA" />
+            </Principal>
+            <Dependent Role="BODEGA">
+              <PropertyRef Name="ID_FARMACIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICAMENTO">
+          <End Role="MEDICAMENTO" Type="Self.MEDICAMENTO" Multiplicity="0..1" />
+          <End Role="BODEGA" Type="Self.BODEGA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICAMENTO">
+              <PropertyRef Name="ID_MEDICAMENTO" />
+            </Principal>
+            <Dependent Role="BODEGA">
+              <PropertyRef Name="ID_MEDICAMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDICAMENTO_TIPO">
+          <End Role="MEDICAMENTO_TIPO" Type="Self.MEDICAMENTO_TIPO" Multiplicity="0..1" />
+          <End Role="MEDICAMENTO" Type="Self.MEDICAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDICAMENTO_TIPO">
+              <PropertyRef Name="ID_MEDICAMENTO_TIPO" />
+            </Principal>
+            <Dependent Role="MEDICAMENTO">
+              <PropertyRef Name="ID_MEDICAMENTO_TIPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="boticaapEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BODEGA" EntityType="Self.BODEGA" />
+          <EntitySet Name="FARMACIA" EntityType="Self.FARMACIA" />
+          <EntitySet Name="MEDICAMENTO" EntityType="Self.MEDICAMENTO" />
+          <EntitySet Name="MEDICAMENTO_TIPO" EntityType="Self.MEDICAMENTO_TIPO" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <AssociationSet Name="FK_FARMACIA" Association="Self.FK_FARMACIA">
+            <End Role="FARMACIA" EntitySet="FARMACIA" />
+            <End Role="BODEGA" EntitySet="BODEGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICAMENTO" Association="Self.FK_MEDICAMENTO">
+            <End Role="MEDICAMENTO" EntitySet="MEDICAMENTO" />
+            <End Role="BODEGA" EntitySet="BODEGA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDICAMENTO_TIPO" Association="Self.FK_MEDICAMENTO_TIPO">
+            <End Role="MEDICAMENTO_TIPO" EntitySet="MEDICAMENTO_TIPO" />
+            <End Role="MEDICAMENTO" EntitySet="MEDICAMENTO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BoticAppStoreContainer" CdmEntityContainer="boticaapEntities1">
+          <EntitySetMapping Name="BODEGA">
+            <EntityTypeMapping TypeName="BoticApp.BODEGA">
+              <MappingFragment StoreEntitySet="BODEGA">
+                <ScalarProperty Name="ID_BODEGA" ColumnName="ID_BODEGA" />
+                <ScalarProperty Name="ID_FARMACIA" ColumnName="ID_FARMACIA" />
+                <ScalarProperty Name="ID_MEDICAMENTO" ColumnName="ID_MEDICAMENTO" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="VALOR_UNITARIO" ColumnName="VALOR_UNITARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FARMACIA">
+            <EntityTypeMapping TypeName="BoticApp.FARMACIA">
+              <MappingFragment StoreEntitySet="FARMACIA">
+                <ScalarProperty Name="ID_FARMACIA" ColumnName="ID_FARMACIA" />
+                <ScalarProperty Name="RAZON_SOCIAL" ColumnName="RAZON_SOCIAL" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDICAMENTO">
+            <EntityTypeMapping TypeName="BoticApp.MEDICAMENTO">
+              <MappingFragment StoreEntitySet="MEDICAMENTO">
+                <ScalarProperty Name="ID_MEDICAMENTO" ColumnName="ID_MEDICAMENTO" />
+                <ScalarProperty Name="ID_MEDICAMENTO_TIPO" ColumnName="ID_MEDICAMENTO_TIPO" />
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+                <ScalarProperty Name="MEDICAMENTO1" ColumnName="MEDICAMENTO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEDICAMENTO_TIPO">
+            <EntityTypeMapping TypeName="BoticApp.MEDICAMENTO_TIPO">
+              <MappingFragment StoreEntitySet="MEDICAMENTO_TIPO">
+                <ScalarProperty Name="ID_MEDICAMENTO_TIPO" ColumnName="ID_MEDICAMENTO_TIPO" />
+                <ScalarProperty Name="MEDICAMENTO_TIPO1" ColumnName="MEDICAMENTO_TIPO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="BoticApp.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="USUARIO1" ColumnName="USUARIO" />
+                <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
+                <ScalarProperty Name="FECHA_CREACION" ColumnName="FECHA_CREACION" />
+                <ScalarProperty Name="FECHA_MODIFICACION" ColumnName="FECHA_MODIFICACION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

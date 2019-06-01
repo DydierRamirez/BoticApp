@@ -1,0 +1,87 @@
+﻿@model BoticApp.Models.FARMACIA
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "Crear Farmacia";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">@ViewBag.Title</h1>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-xl-8 col-lg-9">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" role="tabpanel" id="profile">
+                                <!--end of avatar-->
+                                <form>
+                                    @Html.HiddenFor(model => model.ID_FARMACIA)
+                                    <div class="form-group row align-items-center">
+                                        @Html.LabelFor(model => model.RAZON_SOCIAL, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col">
+                                            @Html.EditorFor(model => model.RAZON_SOCIAL, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.RAZON_SOCIAL, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        @Html.LabelFor(model => model.NIT, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col">
+                                            @Html.EditorFor(model => model.NIT, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.NIT, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        @Html.LabelFor(model => model.DIRECCION, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col">
+                                            @Html.EditorFor(model => model.DIRECCION, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DIRECCION, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        @Html.LabelFor(model => model.TELEFONO, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col">
+                                            @Html.EditorFor(model => model.TELEFONO, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TELEFONO, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        @Html.LabelFor(model => model.USUARIO, htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col">
+                                            @Html.EditorFor(model => model.USUARIO, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.USUARIO, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        @Html.LabelFor(model => model.CLAVE, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-6">
+                                            @Html.PasswordFor(model => model.CLAVE, new { @class = "form-control", placeholder = "Contraseña" })
+                                            @Html.ValidationMessageFor(model => model.CLAVE, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row align-items-center">
+                                        <label class="col-4">Confirmar Contraseña</label>
+                                        <div class="col-6">
+                                            <input id="Clave2" type="password" placeholder="Confirme Contrseña" name="clave2" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-end">
+                                        <button type="submit" class="btn btn-primary">Aceptar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@

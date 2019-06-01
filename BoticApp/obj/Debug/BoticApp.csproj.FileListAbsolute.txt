@@ -50,7 +50,6 @@ C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\
 C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\bin\System.Web.WebPages.xml
 C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\bin\System.Web.WebPages.Razor.xml
-C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\bin\Newtonsoft.Json.xml
 C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\bin\Antlr3.Runtime.pdb
 C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\bin\es\System.Web.Helpers.resources.dll
@@ -65,3 +64,4 @@ C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\
 C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\obj\Debug\BoticApp.dll
 C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\obj\Debug\BoticApp.pdb
 C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\obj\Debug\BoticApp.csprojAssemblyReference.cache
+C:\Users\Dydier Ramirez\Documents\Visual Studio 2017\Projects\BoticApp\BoticApp\bin\Newtonsoft.Json.xml
